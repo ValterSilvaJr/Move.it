@@ -2,8 +2,10 @@ import React from 'react';
 
 import { Wrapper } from './styles';
 
-const Container: React.FC = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>
+interface Props {
+  children: React.ReactNode;
 }
 
-export default Container;
+export default function Container({ children }: Props) {
+  return <Wrapper>{children}</Wrapper>
+}

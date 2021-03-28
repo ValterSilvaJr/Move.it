@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ChallengesContext } from '../../contexts/ChallengeContext';
 
 import { CurrentExperienceBar, CurrentExperienceText, Header } from './styles';
 
-const ExperienceBar: React.FC = () => {
-    const [progress, setprogress] = useState('50%');
+export default function ExperienceBar() {
+  const { currentExperience, experienceToNextLevel } = useContext(ChallengesContext);
+  const percentToNextLevel = Math.round(currentExperience * 100 ) / experienceToNextLevel;
+
   return (
       <Header>
-          <span>8 xp</span>
+          <span>0 xp</span>
           <div>
-            <CurrentExperienceBar moveLeft={progress} />
-            <CurrentExperienceText moveLeft={progress} >300 xp</CurrentExperienceText>
+            <CurrentExperienceBar moveLeft={`${percentToNextLevel}%`} />
+            <CurrentExperienceText moveLeft={`${percentToNextLevel}%`} >{currentExperience} xp</CurrentExperienceText>
           </div>
-          <span>600 xp</span>
+          <span>{experienceToNextLevel} xp</span>
       </Header>
   );
 }
-
-export default ExperienceBar;

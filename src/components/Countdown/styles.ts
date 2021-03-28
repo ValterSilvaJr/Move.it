@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CountdownContainer = styled.div`
     display: flex;
@@ -38,7 +38,12 @@ export const CountdownContainer = styled.div`
     }
 `;
 
-export const CountDownButton = styled.button`
+interface IButtonProps {
+    isActive?: boolean;
+    hasFinished?: boolean;
+}
+
+export const CountDownButton = styled.button<IButtonProps>`
     width: 100%;
     height: 5rem;
 
@@ -51,15 +56,22 @@ export const CountDownButton = styled.button`
     border: 0;
     border-radius: 5px;
 
-    background: var(--blue);
-    color: var(--white);
+    background: var(${props => props.isActive ? '--white' : '--blue'}); 
+    color: var(${props => props.isActive ? '--title' : '--white'});
     
     font-size: 1.25rem;
     font-weight: 600;
 
     transition: background-color 0.2s;
 
-    &:hover {
-        background: var(--blue-dark);
+    &:disabled{
+        background: var(--white);
+        cursor: not-allowed;
+        color: var(--text);
+    }
+
+    &:hover:not(:disabled) {
+        background: var(${props => props.isActive ? '--red' : '--blue-dark'});
+        color: var(${props => props.isActive && '--white'});
     }
 `;
