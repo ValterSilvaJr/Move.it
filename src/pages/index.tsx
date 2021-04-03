@@ -9,7 +9,7 @@ import ExperienceBar from "../components/ExperienceBar";
 import Profile from "../components/Profile";
 import { ChallengesProvider } from '../contexts/ChallengeContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
-import { Section } from "./Home/styles";
+import { Section } from "../styles/Home/styles";
 
 interface HomeProps {
   level: number;
